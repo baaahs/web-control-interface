@@ -12,7 +12,7 @@ config = {
     },
     '/': {
         'tools.staticdir.on': True,
-        'tools.staticdir.dir': '/home/baaahs/web-control-interface/static',
+        'tools.staticdir.dir': '/home/baaahs/web_control/static',
         'tools.staticdir.index': 'index.html'
     }
 }
