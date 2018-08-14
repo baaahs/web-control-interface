@@ -1,12 +1,7 @@
 import cherrypy
 import os
-import zipfile
 
 class WebControlInterface(object):
-
-    @cherrypy.expose
-    def index(self):
-        return "<a href=\"start_white_out\" class=\"button\">Start White Out</a><br><a href=\"start_lights\" class=\"button\">Start Lights</a>"
 
     @cherrypy.expose
     def start_white_out(self):
