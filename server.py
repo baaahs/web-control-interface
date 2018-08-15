@@ -23,7 +23,7 @@ class WebControlInterface(object):
         response += "lights service is " + lights_status + ", " + lights_action_a_href + ".<br><hr>"
         response += "whiteout service is " + whiteout_status + ", " + whiteout_action_a_href + ".<br><hr>"
         response += "olad service is " + olad_status + ", " + olad_action_a_href + ".<br><hr>"
-        response += "osc_layout_server service is " + osc_layout_server_status + ", " + osc_layout_server_status_action_a_href + "."
+        response += "osc_layout_server service is " + osc_layout_server_status + ", " + osc_layout_server_status_action_a_href + ".<br><hr>"
         response += "cadence service is " + cadence_status + ", " + cadence_a_href + "."
         response += "</font></body></html>"
         return response
