@@ -10,11 +10,14 @@ class WebControlInterface(object):
         lights_status = 'active' if os.system("systemctl is-active lights --quiet") == 0 else 'inactive'
         whiteout_status = 'active' if os.system("systemctl is-active whiteout --quiet") == 0 else 'inactive'
         osc_layout_server_status = 'active' if os.system("systemctl is-active osc_layout_server --quiet") == 0 else 'inactive'
+        cadence_status = 'active' if os.system("systemctl is-active cadence --quiet") == 0 else 'inactive'
 
         olad_action_a_href = '<a href="stop_olad">make inactive</a>' if os.system("systemctl is-active olad --quiet") == 0 else '<a href="start_olad">make active</a>'
         lights_action_a_href = '<a href="stop_lights">make inactive</a>' if os.system("systemctl is-active lights --quiet") == 0 else '<a href="start_lights">make active</a>'
         whiteout_action_a_href = '<a href="stop_whiteout">make inactive</a>' if os.system("systemctl is-active whiteout --quiet") == 0 else '<a href="start_whiteout">make active</a>'
         osc_layout_server_status_action_a_href = '<a href="stop_osc_layout_server">make inactive</a>' if os.system("systemctl is-active osc_layout_server --quiet") == 0 else '<a href="start_osc_layout_server">make active</a>'
+        cadence_a_href = '<a href="stop_cadence">make inactive</a>' if os.system("systemctl is-active cadence --quiet") == 0 else '<a href="start_cadence">make active</a>'
+
 
         response = "<html><head><title>BAAAHS Web Control</title></head><body><font size='7'>"        
         response += "lights service is " + lights_status + ", " + lights_action_a_href + ".<br><hr>"
@@ -23,6 +26,16 @@ class WebControlInterface(object):
         response += "osc_layout_server service is " + osc_layout_server_status + ", " + osc_layout_server_status_action_a_href + "."
         response += "</font></body></html>"
         return response
+
+    @cherrypy.expose
+    def start_cadence(self):
+        os.system("sudo systemctl start cadence")
+        raise cherrypy.HTTPRedirect("/")
+
+    @cherrypy.expose
+    def stop_cadence(self):
+        os.system("sudo systemctl stop cadence")
+        raise cherrypy.HTTPRedirect("/")
 
     @cherrypy.expose
     def start_olad(self):
